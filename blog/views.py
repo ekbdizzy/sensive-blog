@@ -50,7 +50,9 @@ def index(request):
 
 def post_detail(request, slug):
     try:
-        post = Post.objects.select_related('author').fetch_likes_count().get(slug=slug)
+        post = Post.objects.select_related('author') \
+            .fetch_likes_count() \
+            .get(slug=slug)
     except Post.DoesNotExist as exception:
         raise Http404(exception)
 
